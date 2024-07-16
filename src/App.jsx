@@ -5,7 +5,8 @@ import Footer from './components/Footer';
 import Home from './components/Home';
 import NotFound from './components/NotFound';
 import ListadoAspirantes from './components/aspirantes/ListadoAspirantes';
-
+import Login from './components/Login';
+import Register from './components/Register';
 function App() {
   return (
     <>
@@ -13,6 +14,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/aspirantes" element={<ListadoAspirantes />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
