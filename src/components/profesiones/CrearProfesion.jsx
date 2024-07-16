@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
-import { createProfesion } from './profesionesService';
+import { createProfesion } from '../servicios/profesionesService'; 
 
 const CrearProfesion = () => {
     const [profesion, setProfesion] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await createProfesion({ profesion });
-        setProfesion('');
+        try {
+            await createProfesion({ profesion });
+            setProfesion('');
+            alert('Profesión creada exitosamente');
+        } catch (error) {
+            console.error('Error al crear la profesión:', error);
+            alert('Hubo un error al crear la profesión');
+        }
     };
 
     return (
@@ -26,3 +32,4 @@ const CrearProfesion = () => {
 };
 
 export default CrearProfesion;
+

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5173/api/profesiones';
+const API_URL = '/api/profesiones'; 
 
 const getAllProfesiones = async () => {
     const response = await axios.get(API_URL);
@@ -27,4 +27,11 @@ const getProfesionById = async (id) => {
     return response.data;
 };
 
-export { getAllProfesiones, createProfesion, deleteProfesion, updateProfesion, getProfesionById };
+export {
+    getAllProfesiones,
+    createProfesion,
+    deleteProfesion,
+    updateProfesion,
+    getProfesionById
+};
+

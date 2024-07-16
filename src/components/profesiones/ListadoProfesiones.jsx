@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getAllProfesiones, deleteProfesion } from './profesionesService';
+import { getAllProfesiones, deleteProfesion } from '../servicios/profesionesService'; 
 
 const ListadoProfesiones = () => {
     const [profesiones, setProfesiones] = useState([]);
@@ -9,13 +9,21 @@ const ListadoProfesiones = () => {
     }, []);
 
     const fetchProfesiones = async () => {
-        const profesionesData = await getAllProfesiones();
-        setProfesiones(profesionesData);
+        try {
+            const profesionesData = await getAllProfesiones();
+            setProfesiones(profesionesData);
+        } catch (error) {
+            console.error('Error al obtener las profesiones:', error);
+        }
     };
 
     const handleDelete = async (id) => {
-        await deleteProfesion(id);
-        fetchProfesiones();
+        try {
+            await deleteProfesion(id);
+            fetchProfesiones();
+        } catch (error) {
+            console.error('Error al eliminar la profesión:', error);
+        }
     };
 
     return (
@@ -34,3 +42,4 @@ const ListadoProfesiones = () => {
 };
 
 export default ListadoProfesiones;
+

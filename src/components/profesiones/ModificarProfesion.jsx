@@ -1,20 +1,31 @@
 import React, { useState } from 'react';
-import { updateProfesion, getProfesionById } from './profesionesService';
+import { updateProfesion, getProfesionById } from '../servicios/profesionesService';
 
 const ModificarProfesion = () => {
     const [id, setId] = useState('');
     const [profesion, setProfesion] = useState('');
 
     const handleFetchProfesion = async () => {
-        const data = await getProfesionById(id);
-        setProfesion(data.profesion);
+        try {
+            const data = await getProfesionById(id);
+            setProfesion(data.profesion);
+        } catch (error) {
+            console.error('Error al buscar la profesión:', error);
+            alert('Hubo un error al buscar la profesión');
+        }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await updateProfesion(id, { profesion });
-        setId('');
-        setProfesion('');
+        try {
+            await updateProfesion(id, { profesion });
+            setId('');
+            setProfesion('');
+            alert('Profesión modificada exitosamente');
+        } catch (error) {
+            console.error('Error al modificar la profesión:', error);
+            alert('Hubo un error al modificar la profesión');
+        }
     };
 
     return (
