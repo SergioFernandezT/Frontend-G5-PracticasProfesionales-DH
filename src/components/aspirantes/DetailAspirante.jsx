@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 function AspiranteDetail() {
     const { id } = useParams();
     const [aspirante, setAspirante] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch(`/api/aspirantes/${id}`)
+        fetch(`http://localhost:3737/api/aspirantes/${id}`)
             .then(response => response.json())
             .then(data => setAspirante(data))
-            .catch(error => console.error('Error:', error));
+            .catch(error => console.error('Error:', error))
+            .finally(() => setLoading(false));
     }, [id]);
 
     const calculateAge = (birthdate) => {
@@ -23,11 +25,11 @@ function AspiranteDetail() {
         return age;
     };
 
-    if (!aspirante) {
+    if (loading) {
         return <div>Loading...</div>;
     }
 
-    return (
+    if (aspirante) {return (
         <div className="max-w-4xl mx-auto mt-8 p-4 bg-white shadow-md rounded-lg">
             <h1 className="text-2xl font-bold mb-4">Detalle del Aspirante</h1>
             <div className="flex flex-col items-start">
@@ -58,7 +60,8 @@ function AspiranteDetail() {
                 </div>
             </div>
         </div>
-    );
+    
+    );}
 }
 
 export default AspiranteDetail;
