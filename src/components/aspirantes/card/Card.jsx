@@ -8,7 +8,7 @@ export function Card({className,...props}) {
 
 export function CardHeader({className,...props}) {
   return (
-    <div className={`flex flex-col space-y-1.5 p-6 ${className}`}>
+    <div className={`flex flex-col space-y-1.5 ${className}`}>
       {props.children}
     </div>
   )
