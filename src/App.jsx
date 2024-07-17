@@ -8,6 +8,10 @@ import ListadoAspirantes from './components/aspirantes/ListadoAspirantes';
 import Login from './components/Login';
 import Register from './components/Register';
 import DetailAspirante from './components/aspirantes/DetailAspirante';
+import ListadoProfesiones from './components/profesiones/ListadoProfesiones';
+import CrearProfesion from './components/profesiones/CrearProfesion';
+import ModificarProfesion from './components/profesiones/ModificarProfesion';
+
 
 function App() {
   return (
@@ -19,6 +23,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/aspirantes/id" element={<DetailAspirante />} />
+        <Route path="/profesiones" element={<ListadoProfesiones />} />
+        <Route path="/crear-profesion" element={<CrearProfesion />} />
+        <Route path="/modificar-profesion/:id" element={<ModificarProfesion />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
@@ -26,4 +33,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
