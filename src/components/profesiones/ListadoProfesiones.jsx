@@ -13,13 +13,17 @@ const ListadoProfesiones = () => {
     }, []);
 
     return (
-        <div>
-            <h1>Listado de Profesiones</h1>
-            <ul>
-                {profesiones.map(profesion => (
-                    <li key={profesion.id}>{profesion.profesion}</li>
-                ))}
-            </ul>
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 px-4 sm:px-6 lg:px-8">
+            <div className="bg-white p-8 rounded shadow-md w-full max-w-2xl">
+                <h1 className="text-2xl font-bold mb-6 text-center">Listado de Profesiones</h1>
+                <ul className="list-disc list-inside">
+                    {profesiones.map(profesion => (
+                        <li key={profesion.id} className="text-lg mb-2">
+                            {profesion.profesion}
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </div>
     );
 };
