@@ -1,50 +1,34 @@
-import React, { useState } from 'react';
-import { updateProfesion, getProfesionById } from '../servicios/profesionesService';
+import React, { useState, useEffect } from 'react';
+import { getProfesionById, updateProfesion } from '../../components/servicios/profesionesService';
+import { useParams, useHistory } from 'react-router-dom';
 
 const ModificarProfesion = () => {
-    const [id, setId] = useState('');
+    const { id } = useParams();
+    const history = useHistory();
     const [profesion, setProfesion] = useState('');
 
-    const handleFetchProfesion = async () => {
-        try {
-            const data = await getProfesionById(id);
-            setProfesion(data.profesion);
-        } catch (error) {
-            console.error('Error al buscar la profesión:', error);
-            alert('Hubo un error al buscar la profesión');
-        }
-    };
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await getProfesionById(id);
+            setProfesion(result.profesion);
+        };
+        fetchData();
+    }, [id]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            await updateProfesion(id, { profesion });
-            setId('');
-            setProfesion('');
-            alert('Profesión modificada exitosamente');
-        } catch (error) {
-            console.error('Error al modificar la profesión:', error);
-            alert('Hubo un error al modificar la profesión');
-        }
+        await updateProfesion(id, { profesion });
+        history.push('/profesiones');
     };
 
     return (
         <form onSubmit={handleSubmit}>
-            <h2>Modificar Profesión</h2>
+            <label htmlFor="profesion">Modificar Profesión:</label>
             <input
                 type="text"
-                value={id}
-                onChange={(e) => setId(e.target.value)}
-                placeholder="ID de la Profesión"
-                required
-            />
-            <button type="button" onClick={handleFetchProfesion}>Buscar</button>
-            <input
-                type="text"
+                id="profesion"
                 value={profesion}
                 onChange={(e) => setProfesion(e.target.value)}
-                placeholder="Nueva Profesión"
-                required
             />
             <button type="submit">Modificar</button>
         </form>
@@ -52,3 +36,5 @@ const ModificarProfesion = () => {
 };
 
 export default ModificarProfesion;
+
+

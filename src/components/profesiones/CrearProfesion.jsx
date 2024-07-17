@@ -1,30 +1,23 @@
 import React, { useState } from 'react';
-import { createProfesion } from '../servicios/profesionesService'; 
+import { createProfesion } from '../../components/servicios/profesionesService';
 
 const CrearProfesion = () => {
     const [profesion, setProfesion] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            await createProfesion({ profesion });
-            setProfesion('');
-            alert('Profesión creada exitosamente');
-        } catch (error) {
-            console.error('Error al crear la profesión:', error);
-            alert('Hubo un error al crear la profesión');
-        }
+        await createProfesion({ profesion });
+        setProfesion('');
     };
 
     return (
         <form onSubmit={handleSubmit}>
-            <h2>Crear Profesión</h2>
+            <label htmlFor="profesion">Nueva Profesión:</label>
             <input
                 type="text"
+                id="profesion"
                 value={profesion}
                 onChange={(e) => setProfesion(e.target.value)}
-                placeholder="Nueva Profesión"
-                required
             />
             <button type="submit">Crear</button>
         </form>
@@ -32,4 +25,5 @@ const CrearProfesion = () => {
 };
 
 export default CrearProfesion;
+
 

@@ -1,40 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { getAllProfesiones, deleteProfesion } from '../servicios/profesionesService'; 
+import React, { useEffect, useState } from 'react';
+import { getAllProfesiones } from '../../components/servicios/profesionesService';
 
 const ListadoProfesiones = () => {
     const [profesiones, setProfesiones] = useState([]);
 
     useEffect(() => {
-        fetchProfesiones();
+        const fetchData = async () => {
+            const result = await getAllProfesiones();
+            setProfesiones(result);
+        };
+        fetchData();
     }, []);
-
-    const fetchProfesiones = async () => {
-        try {
-            const profesionesData = await getAllProfesiones();
-            setProfesiones(profesionesData);
-        } catch (error) {
-            console.error('Error al obtener las profesiones:', error);
-        }
-    };
-
-    const handleDelete = async (id) => {
-        try {
-            await deleteProfesion(id);
-            fetchProfesiones();
-        } catch (error) {
-            console.error('Error al eliminar la profesión:', error);
-        }
-    };
 
     return (
         <div>
-            <h2>Listado de Profesiones</h2>
+            <h1>Listado de Profesiones</h1>
             <ul>
-                {profesiones.map((profesion) => (
-                    <li key={profesion.id}>
-                        {profesion.profesion}
-                        <button onClick={() => handleDelete(profesion.id)}>Eliminar</button>
-                    </li>
+                {profesiones.map(profesion => (
+                    <li key={profesion.id}>{profesion.profesion}</li>
                 ))}
             </ul>
         </div>
@@ -42,4 +25,5 @@ const ListadoProfesiones = () => {
 };
 
 export default ListadoProfesiones;
+
 

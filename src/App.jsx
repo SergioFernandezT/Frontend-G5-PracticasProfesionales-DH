@@ -1,13 +1,15 @@
-import './App.css';
+import './App.css'
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './components/Home';
 import NotFound from './components/NotFound';
 import ListadoAspirantes from './components/aspirantes/ListadoAspirantes';
-import ListadoProfesiones from './components/profesiones/ListadoProfesiones'; // Añadir ruta para ListadoProfesiones
-import CrearProfesion from './components/profesiones/CrearProfesion'; // Añadir ruta para CrearProfesion
-import ModificarProfesion from './components/profesiones/ModificarProfesion'; // Añadir ruta para ModificarProfesion
+import DetailAspirante from './components/aspirantes/DetailAspirante';
+import ListadoProfesiones from './components/profesiones/ListadoProfesiones';
+import CrearProfesion from './components/profesiones/CrearProfesion';
+import ModificarProfesion from './components/profesiones/ModificarProfesion';
+
 
 function App() {
   return (
@@ -16,14 +18,15 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/aspirantes" element={<ListadoAspirantes />} />
+        <Route path="/aspirantes/id" element={<DetailAspirante />} />
         <Route path="/profesiones" element={<ListadoProfesiones />} />
-        <Route path="/profesiones/crear" element={<CrearProfesion />} />
-        <Route path="/profesiones/modificar" element={<ModificarProfesion />} />
+        <Route path="/crear-profesion" element={<CrearProfesion />} />
+        <Route path="/modificar-profesion/:id" element={<ModificarProfesion />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </>
-  );
+  )
 }
 
 export default App;
