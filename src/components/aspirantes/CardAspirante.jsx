@@ -27,7 +27,7 @@ function CardAspirante({id,nombre,profesion,imagen,descripcion}) {
         </p>
         <div className="flex justify-end">
           {/* Boton para ver perfil del aspirante*/}
-          <Link to={`/aspirante/${id}`}
+          <Link to={`/aspirantes/${id}`}
             
             className="bg-blue-500 inline-flex h-8 items-center justify-center rounded-md px-4 text-sm font-medium text-white shadow transition-colors hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-1 pointer-events-auto disabled:opacity-50"
           >

@@ -22,10 +22,10 @@ function App() {
         <Route path="/aspirantes" element={<ListadoAspirantes />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/aspirantes/id" element={<DetailAspirante />} />
+        <Route path="/aspirantes/:id" element={<DetailAspirante />} />
         <Route path="/profesiones" element={<ListadoProfesiones />} />
-        <Route path="/crear-profesion" element={<CrearProfesion />} />
-        <Route path="/modificar-profesion/:id" element={<ModificarProfesion />} />
+        <Route path="/profesiones/crear-profesion" element={<CrearProfesion />} />
+        <Route path="/profesiones/modificar-profesion/:id" element={<ModificarProfesion />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

@@ -6,7 +6,7 @@ function AspiranteDetail() {
     const [aspirante, setAspirante] = useState(null);
 
     useEffect(() => {
-        fetch(`/api/aspirantes/${id}`)
+        fetch(`http://localhost:3737/api/aspirantes/${id}`)
             .then(response => response.json())
             .then(data => setAspirante(data))
             .catch(error => console.error('Error:', error));
@@ -22,6 +22,7 @@ function AspiranteDetail() {
         }
         return age;
     };
+    console.log(aspirante)
 
     if (!aspirante) {
         return <div>Loading...</div>;
