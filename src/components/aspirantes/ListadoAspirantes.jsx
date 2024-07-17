@@ -9,7 +9,6 @@ function ListadoAspirantes() {
       .then(data => setAspirantes(data))
       .catch(error => console.error('Error:', error));
   }, []);
-  console.log(aspirantes)
   if (!aspirantes) return <p>Loading...</p>
   else {
     return (
