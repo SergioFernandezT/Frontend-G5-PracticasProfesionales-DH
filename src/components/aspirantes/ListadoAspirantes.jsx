@@ -1,7 +1,7 @@
 import './ListadoAspirantes.css'
 import CardAspirante from './CardAspirante'
 import React, { useEffect, useState } from 'react';
-function ListadoAspirantes() {
+function ListadoAspirantes({palabraClave}) {
   const [aspirantes, setAspirantes] = useState();
   useEffect(() => {
     fetch(`http://localhost:3737/api/aspirantes`)

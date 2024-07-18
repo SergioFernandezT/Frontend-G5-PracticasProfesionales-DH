@@ -6,7 +6,7 @@ function AspiranteDetail() {
     const [aspirante, setAspirante] = useState(null);
 
     useEffect(() => {
-        fetch(`http://localhost:3737/api/aspirantes/${id}`)
+        fetch(`http://localhost:3737/api/aspirantes/detail/${id}`)
             .then(response => response.json())
             .then(data => setAspirante(data))
             .catch(error => console.error('Error:', error));
@@ -22,7 +22,7 @@ function AspiranteDetail() {
         }
         return age;
     };
-    console.log(aspirante)
+    // console.log(aspirante)
 
     if (!aspirante) {
         return <div>Loading...</div>;
@@ -48,7 +48,7 @@ function AspiranteDetail() {
                         <p className="text-gray-600">{aspirante.profesion}</p>
                     </div>
                 </div>
-                <p className="text-sm mb-4">{`Desarrollador web experimentado con pasión por crear sitios web modernos y responsivos.`}</p>
+                <p className="text-sm mb-4">{aspirante.descripcion}</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
                     <p><strong>Email:</strong> {aspirante.email}</p>
                     <p><strong>Teléfono:</strong> {aspirante.telefono}</p>
