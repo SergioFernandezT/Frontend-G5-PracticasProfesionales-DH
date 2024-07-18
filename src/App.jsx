@@ -6,6 +6,7 @@ import Home from './components/Home';
 import NotFound from './components/NotFound';
 import SearchBar from './components/SearchBar';
 import ListadoAspirantes from './components/aspirantes/ListadoAspirantes';
+import FilterListadoAspirantes from './components/aspirantes/FilterListadoAspirantes';
 import Login from './components/Login';
 import Register from './components/Register';
 import DetailAspirante from './components/aspirantes/DetailAspirante';
@@ -21,8 +22,8 @@ function App() {
       <SearchBar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/aspirantes" element={<ListadoAspirantes palabraClave={""}/>} />
-        <Route path="/aspirantes/buscar/" element={<ListadoAspirantes palabraClave={""}/>} />
+        <Route path="/aspirantes" element={<ListadoAspirantes />} />
+        <Route path="/aspirantes/buscar/:keywords" element={<FilterListadoAspirantes />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/aspirantes/:id" element={<DetailAspirante />} />
