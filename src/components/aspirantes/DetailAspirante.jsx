@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 function AspiranteDetail() {
@@ -22,41 +22,54 @@ function AspiranteDetail() {
         }
         return age;
     };
-    // console.log(aspirante)
+    console.log(aspirante)
 
     if (!aspirante) {
         return <div>Loading...</div>;
     }
 
     return (
-        <div className="max-w-4xl mx-auto mt-8 p-4 bg-white shadow-md rounded-lg">
-            <h1 className="text-2xl font-bold mb-4">Detalle del Aspirante</h1>
-            <div className="flex flex-col items-start">
-                <img 
-                    src={aspirante.cover_img || "default_cover_img_url"} 
-                    alt={`${aspirante.nombre} ${aspirante.apellido}'s cover`} 
-                    className="w-full h-48 object-cover rounded-t-lg mb-4"
+        <div className="p-4 h-auto md:min-h-dvh w-full flex flex-col gap-4 md:items-start">
+            <div className='w-full px-3 pb-3 border-b-2 flex flex-col sm:flex-row items-center justify-between'>
+                <img
+                    src={aspirante.cover_img || "default_cover_img_url"}
+                    alt={`${aspirante.Nombre} ${aspirante.Apellido}'s cover`}
+                    className="bg-gray-200 w-52 h-52 object-cover rounded-lg"
                 />
-                <div className="flex items-center gap-4 mb-4">
-                    <img 
-                        src={aspirante.avatar_url || "default_avatar_url"} 
-                        alt={`${aspirante.nombre} ${aspirante.apellido}'s avatar`} 
-                        className="w-24 h-24 object-cover rounded-full"
-                    />
-                    <div>
-                        <h2 className="text-xl font-semibold">{`${aspirante.nombre} ${aspirante.apellido}`}</h2>
-                        <p className="text-gray-600">{aspirante.profesion}</p>
+                <div className='w-[75%] p-4'>
+                    <div className="flex flex-col items-center md:items-start py-2 mb-4">
+                        <h2 className="text-2xl font-semibold">{`${aspirante.Nombre} ${aspirante.Apellido}`}</h2>
+                        <p className="text-gray-600 text-xl">Desarrolador Full Web Stack</p>
+                    </div>
+                    <div className='text-start text-xl mb-4'>
+                        <p>{aspirante.descripcion}</p>
                     </div>
                 </div>
-                <p className="text-sm mb-4">{aspirante.descripcion}</p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-                    <p><strong>Email:</strong> {aspirante.email}</p>
-                    <p><strong>Teléfono:</strong> {aspirante.telefono}</p>
-                    <p><strong>LinkedIn:</strong> <a href={aspirante.perfil_linkedin} className="text-blue-500 hover:underline">{aspirante.perfil_linkedin}</a></p>
-                    <p><strong>Fecha de Nacimiento:</strong> {aspirante.fecha_nacimiento}</p>
-                    <p><strong>Edad:</strong> {calculateAge(aspirante.fecha_nacimiento)}</p>
-                    <p><strong>Sexo:</strong> {aspirante.sexo}</p>
-                </div>
+            </div>
+            <div className="flex flex-col justify-around text-start text-xl h-80 w-full p-5 border shadow-sm rounded-lg">
+                <p>
+                    <strong className='font-bold' >Email: </strong>{aspirante.Email}
+                </p>
+                <p>
+                    <strong className='font-bold' >Teléfono: </strong> {aspirante.Telefono}
+                </p>
+                <p>
+                    <strong className='font-bold' >LinkedIn: </strong>
+                    <a
+                        href={aspirante.Perfil_linkedin}
+                        className="text-blue-500 hover:underline"
+                    >
+                        {aspirante.Perfil_linkedin}
+                    </a>
+                </p>
+                <p>
+                    <strong className='font-bold' >Fecha de Nacimiento: </strong>{aspirante.Fecha_nacimiento}
+                </p>
+                <p>
+                    <strong className='font-bold' >Edad: </strong>{calculateAge(aspirante.Fecha_nacimiento)}
+                </p>
+                <p>
+                    <strong className='font-bold' >Sexo: </strong>{aspirante.Sexo}</p>
             </div>
         </div>
     );
