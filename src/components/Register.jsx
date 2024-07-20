@@ -14,6 +14,8 @@ function Register() {
     role: ''
   });
 
+  const [errors, setErrors] = useState({});
+
   const handleChange = (e) => {
     const { name, value, files } = e.target;
 
@@ -21,14 +23,46 @@ function Register() {
       ...formData,
       [name]: files ? files[0] : value
     }); 
+    // Clear error on change
+    if (errors[name]) {
+      setErrors({
+        ...errors,
+        [name]: ''
+      });
+    }
+  };
+  //Validaciones de errores
+  const validateForm = () => {
+    const newErrors = {};
+  
+    if (!formData.firstName) newErrors.firstName = '*El nombre es obligatorio';
+    if (!formData.lastName) newErrors.lastName = '*El apellido es obligatorio';
+    if (!formData.email) newErrors.email = '*El email es obligatorio';
+    if (!formData.phone) newErrors.phone = '*El teléfono es obligatorio';
+    if (!formData.linkedin) newErrors.linkedin = '*El LinkedIn es obligatorio';
+    if (!formData.birthdate) newErrors.birthdate = '*La fecha de nacimiento es obligatoria';
+    if (!formData.image) newErrors.image = '*La imagen es obligatoria';
+    if (!formData.profession) newErrors.profession = '*La profesión es obligatoria';
+    if (!formData.gender) newErrors.gender = '*El género es obligatorio';
+    if (!formData.role) newErrors.role = '*El rol es obligatorio';
+  
+    return newErrors;
   };
 
   const handleSubmit = (e) => {
-    
+    e.preventDefault();
+    const newErrors = validateForm();
+    //manejo de errores
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+    } else {
+      // Aquí puedes manejar el envío del formulario
+      console.log('Formulario enviado con éxito:', formData);
+    }
   };
 
   return (
-    <div className="flex flex-col justify-center items-center p-8 space-y-6 bg-white h-dvh">
+    <div className={`flex flex-col justify-center items-center p-8 space-y-6 bg-white h-dvh ${Object.keys(errors).length > 0 ? 'm-20' : ''}`}>
       <form className="flex flex-col gap-2 p-6 border shadow-md rounded-lg" onSubmit={handleSubmit}>
         <h2 className="text-2xl font-bold text-center">Register</h2>
         <div>
@@ -37,11 +71,12 @@ function Register() {
             id="firstName"
             name="firstName"
             type="text"
-            required
+            
             value={formData.firstName}
             onChange={handleChange}
             className="w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
+          {errors.firstName && <p className="text-red-500 text-sm">{errors.firstName}</p>}
         </div>
         <div>
           <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Apellido</label>
@@ -49,11 +84,12 @@ function Register() {
             id="lastName"
             name="lastName"
             type="text"
-            required
+            
             value={formData.lastName}
             onChange={handleChange}
             className="w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
+          {errors.lastName && <p className="text-red-500 text-sm">{errors.lastName}</p>}
         </div>
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
@@ -61,11 +97,12 @@ function Register() {
             id="email"
             name="email"
             type="email"
-            required
+            
             value={formData.email}
             onChange={handleChange}
             className="w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
+          {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
         </div>
         <div>
           <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Telefono</label>
@@ -73,11 +110,12 @@ function Register() {
             id="phone"
             name="phone"
             type="tel"
-            required
+            
             value={formData.phone}
             onChange={handleChange}
             className="w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
+          {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
         </div>
         <div>
           <label htmlFor="linkedin" className="block text-sm font-medium text-gray-700">LinkedIn URL</label>
@@ -85,11 +123,12 @@ function Register() {
             id="linkedin"
             name="linkedin"
             type="url"
-            required
+            
             value={formData.linkedin}
             onChange={handleChange}
             className="w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
+          {errors.linkedin && <p className="text-red-500 text-sm">{errors.linkedin}</p>}
         </div>
         <div>
           <label htmlFor="birthdate" className="block text-sm font-medium text-gray-700">Fecha de nacimiento</label>
@@ -97,11 +136,12 @@ function Register() {
             id="birthdate"
             name="birthdate"
             type="date"
-            required
+            
             value={formData.birthdate}
             onChange={handleChange}
             className="w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
+          {errors.birthdate && <p className="text-red-500 text-sm">{errors.birthdate}</p>}
         </div>
         <div>
           <label htmlFor="image" className="block text-sm font-medium text-gray-700">Imagen de perfil</label>
@@ -110,10 +150,11 @@ function Register() {
             name="image"
             type="file"
             accept="image/*"
-            required
+            
             onChange={handleChange}
             className="w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
+          {errors.image && <p className="text-red-500 text-sm">{errors.image}</p>}
         </div>
         <div>
           <label htmlFor="profession" className="block text-sm font-medium text-gray-700">Profesion</label>
@@ -121,18 +162,19 @@ function Register() {
             id="profession"
             name="profession"
             type="text"
-            required
+            
             value={formData.profession}
             onChange={handleChange}
             className="w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
+          {errors.profession && <p className="text-red-500 text-sm">{errors.profession}</p>}
         </div>
         <div>
           <label htmlFor="gender" className="block text-sm font-medium text-gray-700">Gender</label>
           <select
             id="gender"
             name="gender"
-            required
+            
             value={formData.gender}
             onChange={handleChange}
             className="w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -142,6 +184,7 @@ function Register() {
             <option value="female">Mujer</option>
             <option value="other">Other</option>
           </select>
+          {errors.gender && <p className="text-red-500 text-sm">{errors.gender}</p>}
         </div>
         <div>
           <label htmlFor="role" className="block text-sm font-medium text-gray-700">Rol</label>
@@ -156,6 +199,7 @@ function Register() {
             <option value="aspirant">Aspirante</option>
             <option value="contractor">Contratista</option>
           </select>
+          {errors.role && <p className="text-red-500 text-sm">{errors.role}</p>}
         </div>
         <div>
           <button
