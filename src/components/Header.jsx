@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom" 
+
 function Header() {
     return (
     <header className="bg-gray-60 flex justify-between intem-center p-4 shadow-md">
@@ -7,14 +9,32 @@ function Header() {
     </div>
 
     <nav className="flex space-x-6 ">
-        <a href="#" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Empresas</a>
-        <a href="#" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Aspirantes</a>
-        <a href="#" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Profesiones</a>
+
+ <a href="#" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Empresas</a>
+
+
+        <Link to = {`/aspirantes/`}
+         className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
+          Aspirantes
+        </Link>
+
+        <Link to = {`/profesiones/`}
+         className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
+            Profesiones
+        </Link>
+
     </nav>
-    <div className="flex space-x-4">
-        <a href="#"><i class="fa fa-user"aria-hidden="true" ></i></a>
-        <a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i></a>
-    </div>
+   
+       <Link to={`/login/`}
+        className="flex space-x-4">
+       <i class="fa fa-user"aria-hidden="true" ></i>
+       </Link>
+
+       <Link to={`/register/`}
+        className="flex space-x-4">
+        <i class="fa fa-user-plus" aria-hidden="true"></i>
+       </Link>
+
     </header>)
 }
 
