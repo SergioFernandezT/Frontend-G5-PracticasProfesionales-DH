@@ -11,7 +11,7 @@ export default function Home() {
       .catch(error => console.error('Error:', error));
   }, []);
 
- //para limitar los aspirantes a mostrar//}
+ //para limitar los aspirantes a mostrar en el home //
   const aspirantesParaRenderizar = aspirantes.slice(0, 6);
 
   return (
