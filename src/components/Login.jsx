@@ -9,19 +9,17 @@ function Login() {
 
   const authenticateUser = async (email, password) => {
     try {
-      const response = await fetch('http://localhost:3737/login', {
+      const response = await fetch('http://localhost:3737/api/aspirantes/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email, password }),
       });
-
       const data = await response.json();
-      if (!data.success) {
+      if (!data.token) {
         throw new Error(data.message);
       }
-
       return data;
     } catch (error) {
       console.error('Error:', error);
@@ -34,11 +32,9 @@ function Login() {
 
     try {
       const data = await authenticateUser(email, password);
-
       // Aquí puedes guardar el token o cualquier otra información en el localStorage o context
       localStorage.setItem('token', data.token);
-
-      navigate('/home'); 
+      navigate('/home');
     } catch (error) {
       setError('Email o contraseña incorrectos');
     }
@@ -65,7 +61,7 @@ function Login() {
           />
         </div>
         <div>
-          <label htmlFor="password" className="text-sm text-start font-medium text-gray-700">
+          <label  className="text-sm text-start font-medium text-gray-700">
             Password
           </label>
           <input
