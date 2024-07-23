@@ -1,22 +1,54 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const authenticateUser = async (email, password) => {
+    try {
+      const response = await fetch('http://localhost:3737/api/aspirantes/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json();
+      if (!data.token) {
+        throw new Error(data.message);
+      }
+      return data;
+    } catch (error) {
+      console.error('Error:', error);
+      throw error;
+    }
+  };
+
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    console.log('Email:', email);
-    console.log('Password:', password);
+    try {
+      const data = await authenticateUser(email, password);
+      // Aquí puedes guardar el token o cualquier otra información en el localStorage o context
+      localStorage.setItem('token', data.token);
+      navigate('/home');
+    } catch (error) {
+      setError('Email o contraseña incorrectos');
+    }
   };
 
   return (
     <div className="flex flex-col justify-center items-center p-8 space-y-6 bg-white h-dvh">
       <form className="flex flex-col gap-2 p-6 border shadow-md rounded-lg" onSubmit={handleLogin}>
-        <h2 className="text-2xl font-bold text-center">Iniciar Sesion</h2>
+        <h2 className="text-2xl font-bold text-center">Iniciar Sesión</h2>
+        {error && <div className="text-red-500">{error}</div>}
         <div>
-          <label htmlFor="email" className="text-sm text-start font-medium text-gray-700">Email</label>
+          <label htmlFor="email" className="text-sm text-start font-medium text-gray-700">
+            Email
+          </label>
           <input
             id="email"
             name="email"
@@ -29,7 +61,9 @@ function Login() {
           />
         </div>
         <div>
-          <label htmlFor="password" className="text-sm text-start font-medium text-gray-700">Password</label>
+          <label  className="text-sm text-start font-medium text-gray-700">
+            Password
+          </label>
           <input
             id="password"
             name="password"
