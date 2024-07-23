@@ -5,6 +5,7 @@ function Register() {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
+    dni: '',
     email: '',
     password: '',
     phone: '',
@@ -60,42 +61,27 @@ function Register() {
     // if (Object.keys(newErrors).length > 0) {
     //   setErrors(newErrors);
     // } else {
+
+    //          NO HACE FALTA CREAR OTRO FORM
     //   // Crear objeto FormData para manejar el archivo
+    try {
+      const response = await fetch('http://localhost:3737/api/aspirantes/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', },
+        body: JSON.stringify(formData),
+      });
 
-    //// NO HACE FALTA
-            // const formDataObject = new FormData();
-            // Object.keys(formData).forEach((key) => {
-            //   formDataObject.append(key, formData[key]);
-            // });
-
-    //   try {
-    //     const response = await fetch('/api/aspirantes/register', {
-    //       method: 'POST',
-    //       body: formDataObject,
-    //     });
-
-    //     const data = await response.json();
-    //     if (response.ok) {
-    //       alert('Registro exitoso. Ahora puedes iniciar sesión.');
-    //       navigate('/login'); // Redirige al usuario a la página de inicio de sesión
-    //     } else {
-    //       alert(`Error en el registro: ${data.message}`);
-    //     }
-    //   } catch (error) {
-    //     console.error('Error:', error);
-    //     alert('Hubo un error en el registro. Inténtalo de nuevo.');
-    //   }
-    // }
-
-    const response = await fetch('http://localhost:3737/api/aspirantes/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', },
-      body: JSON.stringify(formData),
-    });
-
-    const data = await response.json();
-    // ACA AGREGA UN ALERT O UN CARTELITO DE QUE SE CREO CORRECTAMENTE
-
+      const data = await response.json();
+      if (response.ok) {
+        alert('Registro exitoso. Ahora puedes iniciar sesión.');
+        navigate('/login'); // Redirige al usuario a la página de inicio de sesión
+      } else {
+        alert(`Error en el registro: ${data.message}`);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Hubo un error en el registro. Inténtalo de nuevo.');
+    }
   };
 
   return (
@@ -134,6 +120,20 @@ function Register() {
           {errors.lastName && <p className="text-red-500 text-sm">{errors.lastName}</p>}
         </div>
         <div>
+          <label htmlFor="dni" className="block text-sm font-medium text-gray-700">
+            Dni
+          </label>
+          <input
+            id="dni"
+            name="dni"
+            type="number"
+            value={formData.dni}
+            onChange={handleChange}
+            className="w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          />
+          {errors.dni && <p className="text-red-500 text-sm">{errors.dni}</p>}
+        </div>
+        <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-700">
             Email
           </label>
@@ -148,7 +148,7 @@ function Register() {
           {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
         </div>
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="password" className="block text-sm font-medium text-gray-700">
             Contraseña
           </label>
           <input
@@ -277,6 +277,6 @@ function Register() {
       </form>
     </div>
   );
-}
+};
 
 export default Register;
