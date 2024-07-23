@@ -6,6 +6,7 @@ function Register() {
     firstName: '',
     lastName: '',
     email: '',
+    password: '',
     phone: '',
     linkedin: '',
     birthdate: '',
@@ -54,42 +55,53 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newErrors = validateForm();
-    // Manejo de errores
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-    } else {
-      // Crear objeto FormData para manejar el archivo
-      const formDataObject = new FormData();
-      Object.keys(formData).forEach((key) => {
-        formDataObject.append(key, formData[key]);
-      });
+    // const newErrors = validateForm();
+    // // Manejo de errores
+    // if (Object.keys(newErrors).length > 0) {
+    //   setErrors(newErrors);
+    // } else {
+    //   // Crear objeto FormData para manejar el archivo
 
-      try {
-        const response = await fetch('/api/aspirantes/register', {
-          method: 'POST',
-          body: formDataObject,
-        });
+    //// NO HACE FALTA
+            // const formDataObject = new FormData();
+            // Object.keys(formData).forEach((key) => {
+            //   formDataObject.append(key, formData[key]);
+            // });
 
-        const data = await response.json();
-        if (response.ok) {
-          alert('Registro exitoso. Ahora puedes iniciar sesión.');
-          navigate('/login'); // Redirige al usuario a la página de inicio de sesión
-        } else {
-          alert(`Error en el registro: ${data.message}`);
-        }
-      } catch (error) {
-        console.error('Error:', error);
-        alert('Hubo un error en el registro. Inténtalo de nuevo.');
-      }
-    }
+    //   try {
+    //     const response = await fetch('/api/aspirantes/register', {
+    //       method: 'POST',
+    //       body: formDataObject,
+    //     });
+
+    //     const data = await response.json();
+    //     if (response.ok) {
+    //       alert('Registro exitoso. Ahora puedes iniciar sesión.');
+    //       navigate('/login'); // Redirige al usuario a la página de inicio de sesión
+    //     } else {
+    //       alert(`Error en el registro: ${data.message}`);
+    //     }
+    //   } catch (error) {
+    //     console.error('Error:', error);
+    //     alert('Hubo un error en el registro. Inténtalo de nuevo.');
+    //   }
+    // }
+
+    const response = await fetch('http://localhost:3737/api/aspirantes/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+    // ACA AGREGA UN ALERT O UN CARTELITO DE QUE SE CREO CORRECTAMENTE
+
   };
 
   return (
     <div
-      className={`flex flex-col justify-center items-center p-8 space-y-6 bg-white h-dvh ${
-        Object.keys(errors).length > 0 ? 'm-20' : ''
-      }`}
+      className={`flex flex-col justify-center items-center p-8 space-y-6 bg-white h-dvh ${Object.keys(errors).length > 0 ? 'm-20' : ''
+        }`}
     >
       <form className="flex flex-col gap-2 p-6 border shadow-md rounded-lg" onSubmit={handleSubmit}>
         <h2 className="text-2xl font-bold text-center">Register</h2>
@@ -134,6 +146,20 @@ function Register() {
             className="w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
           {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+        </div>
+        <div>
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            Contraseña
+          </label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            value={formData.password}
+            onChange={handleChange}
+            className="w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          />
+          {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
         </div>
         <div>
           <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
