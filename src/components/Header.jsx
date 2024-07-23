@@ -18,12 +18,12 @@ function Header() {
    
        <Link to={`/login/`}
         className="flex space-x-4">
-       <i class="fa fa-user"aria-hidden="true" ></i>
+       <i className="fa fa-user"aria-hidden="true" ></i>
        </Link>
 
        <Link to={`/register/`}
         className="flex space-x-4">
-        <i class="fa fa-user-plus" aria-hidden="true"></i>
+        <i className="fa fa-user-plus" aria-hidden="true"></i>
        </Link>
 
     </header>)
