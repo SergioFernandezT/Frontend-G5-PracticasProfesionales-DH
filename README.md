@@ -37,7 +37,7 @@ Backend
 Clona el repositorio:  https://github.com/SergioFernandezT/Backend-G5-PracticasProfesionales-DH.git
 
 En tu terminal:
-git clone [<URL_DEL_REPOSITORIO>](https://github.com/SergioFernandezT/Backend-G5-PracticasProfesionales-DH.git)
+git clone https://github.com/SergioFernandezT/Backend-G5-PracticasProfesionales-DH.git
 
 Navega al directorio del backend:
 
@@ -61,8 +61,9 @@ npm run dev
 El backend debería estar corriendo en http://localhost:3737.
 
 Frontend
+Clona el repositorio: https://github.com/SergioFernandezT/Frontend-G5-PracticasProfesionales-DH.git
 
-Navega al directorio del frontend:
+Navega al directorio del frontend: 
 
 cd Frontend-G5-PracticasProfesionales-DH
 
