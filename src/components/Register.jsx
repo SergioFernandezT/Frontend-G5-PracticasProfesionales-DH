@@ -56,14 +56,11 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const newErrors = validateForm();
-    // // Manejo de errores
-    // if (Object.keys(newErrors).length > 0) {
-    //   setErrors(newErrors);
-    // } else {
-
-    //          NO HACE FALTA CREAR OTRO FORM
-    //   // Crear objeto FormData para manejar el archivo
+     const newErrors = validateForm();
+     // Manejo de errores
+     if (Object.keys(newErrors).length > 0) {
+       setErrors(newErrors);
+     }
     try {
       const response = await fetch('http://localhost:3737/api/aspirantes/register', {
         method: 'POST',
@@ -86,7 +83,7 @@ function Register() {
 
   return (
     <div
-      className={`flex flex-col justify-center items-center p-8 space-y-6 bg-white h-dvh ${Object.keys(errors).length > 0 ? 'm-20' : ''
+      className={`flex flex-col justify-center items-center p-8 space-y-6 bg-white h-dvh ${Object.keys(errors).length > 0 ? 'm-40' : 'm-10'
         }`}
     >
       <form className="flex flex-col gap-2 p-6 border shadow-md rounded-lg" onSubmit={handleSubmit}>
