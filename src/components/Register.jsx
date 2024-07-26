@@ -83,7 +83,7 @@ function Register() {
 
   return (
     <div
-      className={`flex flex-col justify-center items-center p-8 space-y-6 bg-white h-dvh ${Object.keys(errors).length > 0 ? 'm-40' : 'm-10'
+      className={`flex flex-col justify-center items-center p-4 space-y-6 bg-white ${Object.keys(errors).length > 0 ? 'm-40' : 'm-10'
         }`}
     >
       <form className="flex flex-col gap-2 p-6 border shadow-md rounded-lg" onSubmit={handleSubmit}>

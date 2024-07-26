@@ -12,16 +12,16 @@ export default function Home() {
   }, []);
 
   //para limitar los aspirantes a mostrar en el home //
-  const aspirantesParaRenderizar = aspirantes.slice(0, 6);
+  const aspirantesParaRenderizar = aspirantes.slice(0, 8);
 
   return (
     <div className="bg-cyan-900">
       <div className="text-center mb-8">
         <h1 className='text-2x1 font-bold'>Nuestros Postulantes</h1>
       </div>
-      <div className='bg-blue-400 grid grid-cols-1 space-y-5 py-5 sm:grid-cols-4'>
+      <div className='bg-slate-400 grid grid-cols-1 p-4 sm:grid-cols-2 md:grid-cols-4'>
         {aspirantesParaRenderizar.map(aspirante => (
-          <div className='bg-gray-50 mx-5 sm:my-5' key={aspirante.id}>
+          <div className='bg-gray-50 m-2 rounded-t-lg sm:m-3' key={aspirante.id}>
             <CardAspirante
               key={aspirante.id}
               id={aspirante.id}
