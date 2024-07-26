@@ -15,13 +15,13 @@ export default function Home() {
   const aspirantesParaRenderizar = aspirantes.slice(0, 6);
 
   return (
-    <div className="mx-auto max-w-7xl px-6 lg:px-8">
-      <div className="text-centre mb-8">
-        <h1 className='text-2x1 font-bold'>Aspirantes</h1>
+    <div className="bg-cyan-900">
+      <div className="text-center mb-8">
+        <h1 className='text-2x1 font-bold'>Nuestros Postulantes</h1>
       </div>
-      <div className='flex mt-5 gap-4 flex-wrap justify-centre'>
+      <div className='bg-blue-400 grid grid-cols-1 space-y-5 py-5 sm:grid-cols-4'>
         {aspirantesParaRenderizar.map(aspirante => (
-          <div className='flex justify-around mb-8' key={aspirante.id}>
+          <div className='bg-gray-50 mx-5 sm:my-5' key={aspirante.id}>
             <CardAspirante
               key={aspirante.id}
               id={aspirante.id}
