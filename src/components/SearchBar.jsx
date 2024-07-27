@@ -12,11 +12,9 @@ export default function SearchBar() {
     };
 
     return (
-        <div className="relative bg-gray-100 h-64 flex items-center justify-center">
-            <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url(/src/assets/img/banner.jpg)' }}></div>
+        <div className="relative bg-gray-100 h-64 flex items-center justify-center sm:h-96">
+            <div className="absolute inset-0 bg-center bg-cover" style={{ backgroundImage: 'url(/src/assets/img/banner.jpg)' }}></div>
             <div className="relative z-10 p-4 bg-white bg-opacity-75 rounded-lg shadow-lg">
-
-
                 <form onSubmit={handleSubmit} method="GET" className="search-form">
                     <input
                         type="text"
@@ -34,5 +32,4 @@ export default function SearchBar() {
             </div>
         </div>
     );
-
 }
