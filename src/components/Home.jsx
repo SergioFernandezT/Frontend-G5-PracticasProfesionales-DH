@@ -16,9 +16,9 @@ export default function Home() {
   const aspirantesParaRenderizar = aspirantes.slice(0, 8);
 
   return (
-    <div className="bg-slate-200">
+    <div className="bg-slate-200 pt-20 w-screen">
       <div className="text-center mb-8">
-        <h1 className='text-2x1 font-bold'>Nuestros Postulantes</h1>
+        <h1 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none'>Nuestros Postulantes</h1>
       </div>
       <div className='bg-slate-200 grid grid-cols-1 p-4 sm:grid-cols-2 md:grid-cols-4'>
         {aspirantesParaRenderizar.map(aspirante => (

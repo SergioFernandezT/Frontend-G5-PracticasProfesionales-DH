@@ -21,7 +21,7 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<div><Carrusel /><Home /></div>} />
+        <Route path="/" element={<div><SearchBar /><Home /></div>} />
         <Route path="/aspirantes" element={<><SearchBar /><ListadoAspirantes /></>} />
         <Route path="/aspirantes/buscar/:keywords" element={<FilterListadoAspirantes />} />
         <Route path="/login" element={<Login />} />

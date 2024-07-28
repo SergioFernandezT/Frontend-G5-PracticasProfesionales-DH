@@ -5,7 +5,7 @@ import iconLinkedin from '../assets/img/linkedin.svg'
 import iconDH from '../assets/img/logo-dh.png'
 function Footer() {
   return (
-    <footer className='border-t-2 border-t-black'>
+    <footer className='border-t-2 border-t-black '>
       <section className='flex justify-between font-sans font-semibold text-slate-800 text-sm sm:text-base '>
 
         <div className=' bg-slate-200  md:py-2 w-1/3'>
