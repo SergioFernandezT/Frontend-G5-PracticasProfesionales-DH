@@ -17,6 +17,7 @@ function Login() {
         body: JSON.stringify({ email, password }),
       });
       const data = await response.json();
+      console.log(data);
       if (!data.token) {
         throw new Error(data.message);
       }
@@ -34,7 +35,7 @@ function Login() {
       const data = await authenticateUser(email, password);
       // Aquí puedes guardar el token o cualquier otra información en el localStorage o context
       localStorage.setItem('token', data.token);
-      // localStorage.setItem('id', data.token);
+      localStorage.setItem('id', data.id);
       navigate('/');
     } catch (error) {
       setError('Email o contraseña incorrectos');
