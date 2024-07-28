@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getAllProfesiones } from '../../components/servicios/profesionesService';
 
 const ListadoProfesiones = () => {
