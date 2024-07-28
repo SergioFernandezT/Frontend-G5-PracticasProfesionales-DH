@@ -8,7 +8,7 @@ const getAllAspirantes = async () => {
 };
 
 const getAspiranteById = async (id) => {
-    const response = await axios.get(`${API_URL}/${id}`);
+    const response = await axios.get(`${API_URL}/detail/${id}`);
     return response.data;
 };
 
