@@ -13,16 +13,15 @@ import DetailAspirante from './components/aspirantes/DetailAspirante';
 import ListadoProfesiones from './components/profesiones/ListadoProfesiones';
 import CrearProfesion from './components/profesiones/CrearProfesion';
 import ModificarProfesion from './components/profesiones/ModificarProfesion';
-
+import Carrusel from './components/Carrusel';
 
 function App() {
   return (
     <>
       <Header />
-      <SearchBar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/aspirantes" element={<ListadoAspirantes />} />
+        <Route path="/" element={<div><Carrusel /><Home /></div>} />
+        <Route path="/aspirantes" element={<><SearchBar /><ListadoAspirantes /></>} />
         <Route path="/aspirantes/buscar/:keywords" element={<FilterListadoAspirantes />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

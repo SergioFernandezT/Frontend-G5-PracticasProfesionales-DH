@@ -34,7 +34,8 @@ function Login() {
       const data = await authenticateUser(email, password);
       // Aquí puedes guardar el token o cualquier otra información en el localStorage o context
       localStorage.setItem('token', data.token);
-      navigate('/home');
+      // localStorage.setItem('id', data.token);
+      navigate('/');
     } catch (error) {
       setError('Email o contraseña incorrectos');
     }
@@ -61,7 +62,7 @@ function Login() {
           />
         </div>
         <div>
-          <label  className="text-sm text-start font-medium text-gray-700">
+          <label className="text-sm text-start font-medium text-gray-700">
             Password
           </label>
           <input

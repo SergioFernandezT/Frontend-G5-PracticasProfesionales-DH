@@ -7,7 +7,7 @@ function CardAspirante({id,nombre,profesion,imagen,descripcion}) {
     <Card className="w-full">
       <CardHeader className="h-32 bg-gray-400 rounded-t-lg">
         {/* Imagen de portada del aspirante*/}
-        <img src="" alt="" />
+        <img src={imagen} alt="" />
       </CardHeader>
       <CardContent className="p-4 space-y-2">
         <div className="flex items-center gap-3 mt-2">
