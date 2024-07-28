@@ -35,11 +35,10 @@ function ListadoAspirantes() {
                 <CardAspirante
                   key={aspirante.id}
                   id={aspirante.id}
-                  nombre = {aspirante.Nombre}
-                  profesion={aspirante.descripcion}
-                  // descripcion={aspirante.descripcion} Corregi aca
-                  descripcion={aspirante.Email}
-                  imagen={aspirante.Imagen} />)
+                  nombre = {aspirante.nombre}
+                  profesion={aspirante.email}
+                  descripcion={aspirante.descripcion}
+                  imagen={aspirante.imagen} />)
             })}
           </div>
         </section>
