@@ -13,12 +13,12 @@ const ListadoProfesiones = () => {
     }, []);
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 px-4 sm:px-6 lg:px-8">
-            <div className="bg-white p-8 rounded shadow-md w-full max-w-2xl">
-                <h1 className="text-2xl font-bold mb-6 text-center">Listado de Profesiones</h1>
-                <ul className="list-disc list-inside">
+        <div className=" bg-slate-100 border-2 flex justify-center ">
+            <div className="bg-white  m-2 rounded-md shadow-2xl w-full max-w-2xl border-2 border-slate-300 sm:my-14">
+                <h1 className="text-2xl font-bold sm:m-5 text-center">Profesiones</h1>
+                <ul className="text-pretty border-t-2  border-gray-100 sm:py-6">
                     {profesiones.map(profesion => (
-                        <li key={profesion.id} className="text-lg mb-2">
+                        <li key={profesion.id} className="text-lg mb-2 cursor-pointer">
                             {profesion.profesion}
                         </li>
                     ))}

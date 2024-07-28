@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import CardAspirante from './aspirantes/CardAspirante'
 import ListadoProfesiones from './profesiones/ListadoProfesiones'
+import Experiencias from './Experiencias'
 
 export default function Home() {
   const [aspirantes, setAspirantes] = useState([]);
@@ -15,11 +16,11 @@ export default function Home() {
   const aspirantesParaRenderizar = aspirantes.slice(0, 8);
 
   return (
-    <div className="bg-cyan-900">
+    <div className="bg-slate-200">
       <div className="text-center mb-8">
         <h1 className='text-2x1 font-bold'>Nuestros Postulantes</h1>
       </div>
-      <div className='bg-slate-400 grid grid-cols-1 p-4 sm:grid-cols-2 md:grid-cols-4'>
+      <div className='bg-slate-200 grid grid-cols-1 p-4 sm:grid-cols-2 md:grid-cols-4'>
         {aspirantesParaRenderizar.map(aspirante => (
           <div className='bg-gray-50 m-2 rounded-t-lg sm:m-3' key={aspirante.id}>
             <CardAspirante
@@ -35,11 +36,8 @@ export default function Home() {
         ))}
 
       </div>
-
-      <div className='text-center mb-4'>
-        <h2 className=' text-2xl font-bold'>Profesiones</h2>
-      </div>
-      <ListadoProfesiones />
+        <Experiencias />
+        <ListadoProfesiones />
     </div>
   );
 }
