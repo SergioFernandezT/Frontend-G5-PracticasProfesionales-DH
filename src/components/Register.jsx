@@ -5,16 +5,16 @@ import { getAllProfesiones } from '../components/servicios/profesionesService';
 function Register() {
   const [imagenUser, setImagenUser] = useState('')
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    nombre: '',
+    apellido: '',
     dni: '',
     email: '',
     password: '',
-    phone: '',
+    telefono: '',
     linkedin: '',
-    birthdate: '',
-    profesion: '',
-    descripcion:'',
+    fecha_nacimiento: '',
+    profesion_id: '',
+    descripcion: '',
     gender: '',
     role: '',
   });
@@ -63,14 +63,14 @@ function Register() {
   const validateForm = () => {
     const newErrors = {};
 
-    if (!formData.firstName) newErrors.firstName = '*El nombre es obligatorio';
-    if (!formData.lastName) newErrors.lastName = '*El apellido es obligatorio';
+    if (!formData.nombre) newErrors.nombre = '*El nombre es obligatorio';
+    if (!formData.apellido) newErrors.apellido = '*El apellido es obligatorio';
     if (!formData.email) newErrors.email = '*El email es obligatorio';
-    if (!formData.phone) newErrors.phone = '*El teléfono es obligatorio';
+    if (!formData.telefono) newErrors.telefono = '*El teléfono es obligatorio';
     if (!formData.linkedin) newErrors.linkedin = '*El LinkedIn es obligatorio';
-    if (!formData.birthdate) newErrors.birthdate = '*La fecha de nacimiento es obligatoria';
-    if (!formData.image) newErrors.image = '*La imagen es obligatoria';
-    if (!formData.profession) newErrors.profession = '*La profesión es obligatoria';
+    if (!formData.fecha_nacimiento) newErrors.fecha_nacimiento = '*La fecha de nacimiento es obligatoria';
+    if (!imagenUser) newErrors.image = '*La imagen es obligatoria';
+    if (!formData.profesion_id) newErrors.profession_id = '*La profesión es obligatoria';
     if (!formData.gender) newErrors.gender = '*El género es obligatorio';
     if (!formData.role) newErrors.role = '*El rol es obligatorio';
 
@@ -79,6 +79,7 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    formData.imagen = imagenUser
     const newErrors = validateForm();
     // Manejo de errores
     if (Object.keys(newErrors).length > 0) {
@@ -89,7 +90,7 @@ function Register() {
         const response = await fetch('http://localhost:3737/api/aspirantes/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', },
-          body: JSON.stringify(formData, imagenUser),
+          body: JSON.stringify(formData),
         });
         const data = await response.json();
         if (response.ok) {
@@ -116,32 +117,32 @@ function Register() {
           <section className='flex flex-col mx-5 h-full'>
             <h3>Datos Personales</h3>
             <div>
-              <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="nombre" className="block text-sm font-medium text-gray-700">
                 Nombre
               </label>
               <input
-                id="firstName"
-                name="firstName"
+                id="nombre"
+                name="nombre"
                 type="text"
-                value={formData.firstName}
+                value={formData.nombre}
                 onChange={handleChange}
                 className="w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
-              {errors.firstName && <p className="text-red-500 text-sm">{errors.firstName}</p>}
+              {errors.nombre && <p className="text-red-500 text-sm">{errors.nombre}</p>}
             </div>
             <div>
-              <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="apellido" className="block text-sm font-medium text-gray-700">
                 Apellido
               </label>
               <input
-                id="lastName"
-                name="lastName"
+                id="apellido"
+                name="apellido"
                 type="text"
-                value={formData.lastName}
+                value={formData.apellido}
                 onChange={handleChange}
                 className="w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
-              {errors.lastName && <p className="text-red-500 text-sm">{errors.lastName}</p>}
+              {errors.apellido && <p className="text-red-500 text-sm">{errors.apellido}</p>}
             </div>
             <div>
               <label htmlFor="dni" className="block text-sm font-medium text-gray-700">
@@ -158,18 +159,18 @@ function Register() {
               {errors.dni && <p className="text-red-500 text-sm">{errors.dni}</p>}
             </div>
             <div>
-              <label htmlFor="birthdate" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="fecha_nacimiento" className="block text-sm font-medium text-gray-700">
                 Fecha de nacimiento
               </label>
               <input
-                id="birthdate"
-                name="birthdate"
+                id="fecha_nacimiento"
+                name="fecha_nacimiento"
                 type="date"
-                value={formData.birthdate}
+                value={formData.fecha_nacimiento}
                 onChange={handleChange}
                 className="w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
-              {errors.birthdate && <p className="text-red-500 text-sm">{errors.birthdate}</p>}
+              {errors.fecha_nacimiento && <p className="text-red-500 text-sm">{errors.fecha_nacimiento}</p>}
             </div>
             <div>
               <label htmlFor="gender" className="block text-sm font-medium text-gray-700">
@@ -183,9 +184,9 @@ function Register() {
                 className="w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               >
                 <option value="">Seleccionar Género</option>
-                <option value="male">Hombre</option>
-                <option value="female">Mujer</option>
-                <option value="other">Otro</option>
+                <option value="masculino">Hombre</option>
+                <option value="femenino">Mujer</option>
+                <option value="otro">Otro</option>
               </select>
               {errors.gender && <p className="text-red-500 text-sm">{errors.gender}</p>}
             </div>
@@ -223,18 +224,18 @@ function Register() {
             </div>
 
             <div>
-              <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="telefono" className="block text-sm font-medium text-gray-700">
                 Teléfono
               </label>
               <input
-                id="phone"
-                name="phone"
-                type="tel"
-                value={formData.phone}
+                id="telefono"
+                name="telefono"
+                type="text"
+                value={formData.telefono}
                 onChange={handleChange}
                 className="w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
-              {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
+              {errors.telefono && <p className="text-red-500 text-sm">{errors.telefono}</p>}
             </div>
             <div>
               <label htmlFor="linkedin" className="block text-sm font-medium text-gray-700">
@@ -265,26 +266,32 @@ function Register() {
               {errors.image && <p className="text-red-500 text-sm">{errors.image}</p>}
             </div>
             <div>
-              <label htmlFor="profession" className="block text-sm font-medium text-gray-700">
-                Profesión
+              <label htmlFor="descripcion" className="block text-sm font-medium text-gray-700">
+                Descripción
               </label>
-              {/* <input
-                id="profession"
-                name="profession"
+              <input
+                id="descripcion"
+                name="descripcion"
                 type="text"
-                value={formData.profession}
+                value={formData.descripcion}
                 onChange={handleChange}
                 className="w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              /> */}
+              />
+              {/* {errors.descripcion && <p className="text-red-500 text-sm">{errors.descripcion}</p>} */}
+            </div>
+            <div>
+              <label htmlFor="profesion_id" className="block text-sm font-medium text-gray-700">
+                Profesión
+              </label>
               <select
-                id="profesion"
-                name="profesion"
-                value={formData.profesion}
+                id="profesion_id"
+                name="profesion_id"
+                value={formData.profesion_id}
                 onChange={handleChange}
                 className="w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               >
                 <option value="">Seleccione una Profesion</option>
-                {profesiones.forEach(profesion => {
+                {profesiones.map(profesion => {
                   return (
                     <option key={profesion.id} value={profesion.id}>
                       {profesion.profesion}
