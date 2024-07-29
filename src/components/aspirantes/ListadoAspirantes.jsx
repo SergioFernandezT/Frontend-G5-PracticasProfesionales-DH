@@ -34,7 +34,7 @@ function ListadoAspirantes() {
   if (!aspirantes.length) return <p>Loading...</p>
   else {
     return (
-      <div className="flex flex-col min-h-[100dvh]">
+      <div className="w-screen flex flex-col min-h-[100dvh]">
         <section className="w-full pt-12 md:pt-24 lg:pt-32 rounded-md">
           <div className="container space-y-10 xl:space-y-16 px-4 md:px-6">
             <div className="flex flex-col items-center space-y-4 text-center">
@@ -57,11 +57,10 @@ function ListadoAspirantes() {
                 <CardAspirante
                   key={aspirante.id}
                   id={aspirante.id}
-                  nombre = {aspirante.Nombre}
-                  profesion={aspirante.descripcion}
-                  // descripcion={aspirante.descripcion} Corregi aca
-                  descripcion={aspirante.Email}
-                  imagen={aspirante.Imagen} />)
+                  nombre = {aspirante.nombre}
+                  profesion={aspirante.email}
+                  descripcion={aspirante.descripcion}
+                  imagen={aspirante.imagen} />)
             })}
           </div>
         </section>
