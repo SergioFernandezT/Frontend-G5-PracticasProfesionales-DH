@@ -58,9 +58,8 @@ function ListadoAspirantes() {
                   key={aspirante.id}
                   id={aspirante.id}
                   nombre = {aspirante.nombre}
-                  profesion={aspirante.email}
+                  profesion={aspirante.profesiones_de_aspirante.profesion}
                   descripcion={aspirante.descripcion}
-                  email={aspirante.email}
                   imagen={aspirante.imagen} />)
             })}
           </div>
