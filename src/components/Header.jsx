@@ -23,7 +23,7 @@ function Header() {
                 <Link to={`/register/`}
                     className="">
                     <i className="fa fa-user-plus p-1 hover:text-white  transition ease-in-out delay-150 sm:hover:scale-150 hover:rounded-full hover:bg-gradient-to-r from-gray-300 to-black duration-800" aria-hidden="true"></i>
-                </Link>    
+                </Link>
             </div>
 
         </header>)
