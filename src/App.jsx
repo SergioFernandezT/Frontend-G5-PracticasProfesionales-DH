@@ -15,14 +15,15 @@ import CrearProfesion from './components/profesiones/CrearProfesion';
 import ModificarProfesion from './components/profesiones/ModificarProfesion';
 import Carrusel from './components/Carrusel';
 
+
 function App() {
   return (
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<div><Carrusel /><Home /></div>} />
+        <Route path="/" element={<div><SearchBar /><Home /></div>} />
         <Route path="/aspirantes" element={<><SearchBar /><ListadoAspirantes /></>} />
-        <Route path="/aspirantes/buscar/:keywords" element={<FilterListadoAspirantes />} />
+        <Route path="/aspirantes/buscar/:keywords" element={<><SearchBar /><FilterListadoAspirantes /></>} />
         <Route path="/aspirantes/name/:name" element={<FilterListadoAspirantes/>}/>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

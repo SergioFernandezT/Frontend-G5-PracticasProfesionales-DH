@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import Carrusel from './Carrusel';
 export default function SearchBar() {
 
     const navigate = useNavigate();
@@ -17,8 +17,8 @@ export default function SearchBar() {
     };
 
     return (
-        <div className="relative bg-gray-100 h-64 flex items-center justify-center sm:h-96">
-            <div className="absolute inset-0 bg-center bg-cover" style={{ backgroundImage: 'url(/src/assets/img/banner.jpg)' }}></div>
+        <div className="w-screen relative bg-gray-100 h-80 flex items-center justify-center sm:h-96">
+            <div className="absolute inset-0 bg-center bg-cover"><Carrusel /></div>
             <div className="relative z-10 p-4 bg-white bg-opacity-75 rounded-lg shadow-lg">
                 <form onSubmit={handleSubmit} method="GET" className="search-form">
                     <select
@@ -38,8 +38,8 @@ export default function SearchBar() {
                         onChange={(e) => setKeywords(e.target.value)}
                         value={keywords}
                     />
-                    <button type="submit" className="search-form_button">
-                        <i className="fas fa-search"></i>
+                    <button type="submit" className="search-form_button pl-2 sm:pl-6 sm:h-8">
+                        <i className="fas fa-search sm:w-8"></i>
                     </button>
                 </form>
             </div>

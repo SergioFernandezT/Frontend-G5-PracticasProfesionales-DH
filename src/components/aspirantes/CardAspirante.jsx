@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 
 function CardAspirante({id,nombre,profesion,imagen,descripcion}) {
   return (
-    <Card className="w-full">
+    <Card className="w-full transition ease-in-out delay-300  hover:scale-110 hover:rounded hover:bg-gradient-to-r from-gray-200 to-blue-600/30 duration-400'">
       <CardHeader className="h-32 bg-gray-400 rounded-t-lg">
         {/* Imagen de portada del aspirante*/}
         <img src={imagen} alt="" />
