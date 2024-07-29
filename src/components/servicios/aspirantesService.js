@@ -32,5 +32,16 @@ const getSearchedAspirantes = async (data) => {
     return response.data;
 };
 
-export { getAllAspirantes, getAspiranteById, createAspirante, updateAspirante, deleteAspirante, getSearchedAspirantes };
+// Nueva función para obtener la cantidad de aspirantes por profesión
+const getAspirantesPorProfesion = async () => {
+    try {
+        const response = await axios.get(`${API_URL}/aspirantes-por-profesion`);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching aspirantes por profesion:', error);
+        throw error;
+    }
+};
+
+export { getAllAspirantes, getAspiranteById, createAspirante, updateAspirante, deleteAspirante, getSearchedAspirantes, getAspirantesPorProfesion };
 
