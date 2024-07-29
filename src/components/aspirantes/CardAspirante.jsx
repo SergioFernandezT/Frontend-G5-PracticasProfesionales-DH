@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 function CardAspirante({ id, nombre, profesion, imagen, descripcion }) {
   return (
     <Card className="w-full transition ease-in-out delay-300 hover:scale-110 hover:rounded hover:bg-gradient-to-r from-gray-200 to-blue-600/30 duration-400">
-      <CardHeader className="h-32 bg-gray-400 rounded-t-lg">
-        <img src={imagen} alt={`${nombre}`} className="object-cover h-full w-full rounded-t-lg" />
+      <CardHeader className="h-96 bg-gray-400 rounded-t-lg">
+        <img src={imagen} alt={`${nombre}`} className="object-cover h-full w-full rounded-t-lg object-center" />
       </CardHeader>
       <CardContent className="p-4 space-y-2">
         <div className="flex items-center gap-3 mt-2">
