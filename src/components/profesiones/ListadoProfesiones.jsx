@@ -1,13 +1,24 @@
 import { useEffect, useState } from 'react';
 import { getAllProfesiones } from '../../components/servicios/profesionesService';
+import { getAspirantesPorProfesion } from '../../components/servicios/aspirantesService';
 
 const ListadoProfesiones = () => {
     const [profesiones, setProfesiones] = useState([]);
+    const [cantidadAspirantes, setCantidadAspirantes] = useState({});
 
     useEffect(() => {
         const fetchData = async () => {
             const result = await getAllProfesiones();
             setProfesiones(result);
+
+            // Obtener la cantidad de aspirantes por profesión desde el servicio de aspirantes
+            const aspirantesResult = await getAspirantesPorProfesion();
+            const cantidadMap = aspirantesResult.reduce((acc, item) => {
+                acc[item.profesion] = item.cantidad;
+                return acc;
+            }, {});
+            setCantidadAspirantes(cantidadMap);
+            console.log(cantidadAspirantes)
         };
         fetchData();
     }, []);
@@ -19,7 +30,7 @@ const ListadoProfesiones = () => {
                 <ul className="text-pretty border-t-2  border-gray-100 sm:py-6">
                     {profesiones.map(profesion => (
                         <li key={profesion.id} className="text-lg mb-2 cursor-pointer">
-                            {profesion.profesion}
+                            {profesion.profesion} ({cantidadAspirantes[profesion.profesion] || 0})
                         </li>
                     ))}
                 </ul>

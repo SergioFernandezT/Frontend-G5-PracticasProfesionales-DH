@@ -1,5 +1,5 @@
 import './App.css'
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, redirect } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './components/Home';
@@ -13,18 +13,16 @@ import DetailAspirante from './components/aspirantes/DetailAspirante';
 import ListadoProfesiones from './components/profesiones/ListadoProfesiones';
 import CrearProfesion from './components/profesiones/CrearProfesion';
 import ModificarProfesion from './components/profesiones/ModificarProfesion';
-// import Carrusel from './components/Carrusel';
-
 
 function App() {
   return (
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<div><SearchBar /><Home /></div>} />
+        <Route path="/" element={<><Home /></>} />
         <Route path="/aspirantes" element={<><SearchBar /><ListadoAspirantes /></>} />
         <Route path="/aspirantes/buscar/:keywords" element={<><SearchBar /><FilterListadoAspirantes /></>} />
-        <Route path="/aspirantes/name/:name" element={<FilterListadoAspirantes/>}/>
+        <Route path="/aspirantes/name/:name" element={<><SearchBar /><FilterListadoAspirantes /></>} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/aspirantes/:id" element={<DetailAspirante />} />
