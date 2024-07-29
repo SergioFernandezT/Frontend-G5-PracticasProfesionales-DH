@@ -18,10 +18,10 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<div><SearchBar /><Home /></div>} />
+        <Route path="/" element={<><Home /></>} />
         <Route path="/aspirantes" element={<><SearchBar /><ListadoAspirantes /></>} />
         <Route path="/aspirantes/buscar/:keywords" element={<><SearchBar /><FilterListadoAspirantes /></>} />
-        <Route path="/aspirantes/name/:name" element={<FilterListadoAspirantes/>}/>
+        <Route path="/aspirantes/name/:name" element={<><SearchBar /><FilterListadoAspirantes /></>} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/aspirantes/:id" element={<DetailAspirante />} />
