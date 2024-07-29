@@ -4,14 +4,17 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 export default function FilterListadoAspirantes() {
-  const { keywords } = useParams();
+  const { keywords, name } = useParams();
   const [aspirantes, setAspirantes] = useState([]);
   // const [waiting, setWaiting] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
+
+    let searchTerm = keywords || name;
+    let searchType = keywords ? 'search' : 'name';
   //  setWaiting(true);
-    fetch(`http://localhost:3737/api/aspirantes/search/${keywords}`)
+    fetch(`http://localhost:3737/api/aspirantes/${searchType}/${searchTerm}`)
       .then(response => {
         if (!response.ok){
           throw new Error('Network response was not ok');
@@ -31,7 +34,7 @@ export default function FilterListadoAspirantes() {
         setError(true);
   })
   //    .finally(() => setWaiting(false));
-  }, [keywords]);
+  }, [keywords, name]);
   //if (waiting) {
   if (error) {
     return <p className="text-4xl text-center p-20">No hay aspirantes con la descripción: {keywords}</p>;
@@ -52,11 +55,11 @@ export default function FilterListadoAspirantes() {
                <CardAspirante
                   key={aspirante.id}
                   id={aspirante.id}
-                  nombre={aspirante.Nombre}
-                  profesion={aspirante.Profesion}
+                  nombre={aspirante.nombre}
+                  profesion={aspirante.profesion}
                   // descripcion={aspirante.descripcion} Corregi aca
                   descripcion={aspirante.descripcion}
-                  imagen={aspirante.Imagen} />
+                  imagen={aspirante.imagen} />
             ))}
           </div>
         </section>

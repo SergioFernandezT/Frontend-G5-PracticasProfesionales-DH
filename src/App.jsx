@@ -20,10 +20,10 @@ function App() {
       <Routes>
         <Route path="/" element={<div><SearchBar /><Home /></div>} />
         <Route path="/aspirantes" element={<><SearchBar /><ListadoAspirantes /></>} />
-        <Route path="/aspirantes/buscar/:keywords" element={<FilterListadoAspirantes />} />
-        {!localStorage.id &&
-          <><Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} /></>}
+        <Route path="/aspirantes/buscar/:keywords" element={<><SearchBar /><FilterListadoAspirantes /></>} />
+        <Route path="/aspirantes/name/:name" element={<FilterListadoAspirantes/>}/>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/aspirantes/:id" element={<DetailAspirante />} />
         <Route path="/profesiones" element={<ListadoProfesiones />} />
         <Route path="/profesiones/crear-profesion" element={<CrearProfesion />} />
