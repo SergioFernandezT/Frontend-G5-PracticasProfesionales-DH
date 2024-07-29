@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import CardAspirante from './aspirantes/CardAspirante'
-import ListadoProfesiones from './profesiones/ListadoProfesiones'
 import Experiencias from './Experiencias'
 
 export default function Home() {
@@ -20,24 +19,24 @@ export default function Home() {
       <div className="text-center mb-8">
         <h1 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none'>Nuestros Postulantes</h1>
       </div>
-      <div className='bg-slate-200 grid grid-cols-1 p-4 sm:grid-cols-2 md:grid-cols-4'>
+      <div className='bg-slate-200 grid grid-cols-1 p-4 sm:grid-cols-2 md:grid-cols-4 gap-4'>
         {aspirantesParaRenderizar.map(aspirante => (
-          <div className='bg-gray-50 m-2 rounded-t-lg sm:m-3' key={aspirante.id}>
+          <div className='bg-gray-50 m-2 rounded-lg sm:m-3' key={aspirante.id}>
             <CardAspirante
               key={aspirante.id}
               id={aspirante.id}
-              nombre={aspirante.Nombre}
-              profesion={aspirante.descripcion}
-              // descripcion={aspirante.descripcion} Corregi aca
-              descripcion={aspirante.Email}
-              imagen={aspirante.Imagen}
+              nombre={aspirante.nombre}
+              profesion={aspirante.email}
+              descripcion={aspirante.descripcion}
+              email={aspirante.email}
+              imagen={aspirante.imagen}
             />
           </div>
         ))}
 
       </div>
-        <Experiencias />
-        {/* <ListadoProfesiones /> */}
+      <Experiencias />
+
     </div>
   );
 }
