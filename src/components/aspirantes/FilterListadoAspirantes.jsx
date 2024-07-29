@@ -6,7 +6,6 @@ import { useParams } from 'react-router-dom';
 export default function FilterListadoAspirantes() {
   const { keywords, name } = useParams();
   const [aspirantes, setAspirantes] = useState([]);
-  // const [waiting, setWaiting] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -33,9 +32,8 @@ export default function FilterListadoAspirantes() {
         setAspirantes([]);
         setError(true);
   })
-  //    .finally(() => setWaiting(false));
   }, [keywords, name]);
-  //if (waiting) {
+
   if (error) {
     return <p className="text-4xl text-center p-20">No hay aspirantes con la descripción: {keywords}</p>;
   }
@@ -56,9 +54,9 @@ export default function FilterListadoAspirantes() {
                   key={aspirante.id}
                   id={aspirante.id}
                   nombre={aspirante.nombre}
-                  profesion={aspirante.profesion}
-                  // descripcion={aspirante.descripcion} Corregi aca
+                  profesion={aspirante.email}
                   descripcion={aspirante.descripcion}
+                  email={aspirante.email}
                   imagen={aspirante.imagen} />
             ))}
           </div>

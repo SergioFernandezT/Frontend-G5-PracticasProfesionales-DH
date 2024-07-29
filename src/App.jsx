@@ -13,6 +13,7 @@ import DetailAspirante from './components/aspirantes/DetailAspirante';
 import ListadoProfesiones from './components/profesiones/ListadoProfesiones';
 import CrearProfesion from './components/profesiones/CrearProfesion';
 import ModificarProfesion from './components/profesiones/ModificarProfesion';
+
 function App() {
   return (
     <>

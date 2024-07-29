@@ -60,6 +60,7 @@ function ListadoAspirantes() {
                   nombre = {aspirante.nombre}
                   profesion={aspirante.email}
                   descripcion={aspirante.descripcion}
+                  email={aspirante.email}
                   imagen={aspirante.imagen} />)
             })}
           </div>
