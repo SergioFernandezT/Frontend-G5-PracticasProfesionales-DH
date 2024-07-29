@@ -26,7 +26,7 @@ function Register() {
     });
 
     const [errors, setErrors] = useState({});
-    
+
     const [profesiones, setProfesiones] = useState([]);
 
     useEffect(() => {

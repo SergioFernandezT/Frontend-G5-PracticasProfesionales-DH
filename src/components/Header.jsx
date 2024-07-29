@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import LogginFeatures from "./LogginFeatures"
 
 function Header() {
     return (
@@ -15,17 +16,7 @@ function Header() {
                 <Link to="/aspirantes" className="rounded-md border-2 border-black text-sm font-semibold sm:text-lg text-black transition delay-200 hover:bg-black hover:opacity-95 hover:text-white duration-300 p-1 md:py-3 lg:px-10 md:px-5">Aspirantes</Link>
                 <Link to="/profesiones" className="rounded-md  border-2 border-black text-sm font-semibold  sm:text-lg text-black transition delay-200 hover:bg-black hover:opacity-95  hover:text-white duration-300 p-1 md:py-3 lg:px-10 md:px-5">Profesiones</Link>
             </nav>
-            <div className="w-1/4 flex sm:w-1/3 items-center justify-center space-x-2 sm:justify-end sm:pr-6 sm:space-x-7 md:pr-10" >
-                <Link to={`/login/`}
-                    className="">
-                    <i className="fa fa-user p-1 hover:text-white  transition ease-in-out delay-150  sm:hover:scale-150 hover:rounded-full hover:bg-gradient-to-r h from-black to-gray-300 duration-800" aria-hidden="true" ></i>
-                </Link>
-                <Link to={`/register/`}
-                    className="">
-                    <i className="fa fa-user-plus p-1 hover:text-white  transition ease-in-out delay-150 sm:hover:scale-150 hover:rounded-full hover:bg-gradient-to-r from-gray-300 to-black duration-800" aria-hidden="true"></i>
-                </Link>
-            </div>
-
+            <LogginFeatures />
         </header>)
 }
 
