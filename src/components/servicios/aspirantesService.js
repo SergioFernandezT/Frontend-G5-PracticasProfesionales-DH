@@ -17,10 +17,23 @@ const createAspirante = async (data) => {
     return response.data;
 };
 
+//const updateAspirante = async (id, data) => {
+//    const response = await axios.put(`${API_URL}/edit/${id}`, data);
+//    return response.data;
+//};
 const updateAspirante = async (id, data) => {
-    const response = await axios.put(`${API_URL}/edit/${id}`, data);
-    return response.data;
-};
+    try {
+      const response = await axios.put(`${API_URL}/edit/${id}`, data, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error updating aspirante:', error);
+      throw error;
+    }
+  };
 
 const deleteAspirante = async (id) => {
     const response = await axios.delete(`${API_URL}/delete/${id}`);
