@@ -23,6 +23,7 @@ function App() {
         <Route path="/" element={<div><Carrusel /><Home /></div>} />
         <Route path="/aspirantes" element={<><SearchBar /><ListadoAspirantes /></>} />
         <Route path="/aspirantes/buscar/:keywords" element={<FilterListadoAspirantes />} />
+        <Route path="/aspirantes/name/:name" element={<FilterListadoAspirantes/>}/>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/aspirantes/:id" element={<DetailAspirante />} />
