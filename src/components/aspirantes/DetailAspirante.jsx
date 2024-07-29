@@ -104,7 +104,7 @@ function AspiranteDetail() {
             <div className="flex flex-col items-center md:items-start py-2 mb-4">
               <h2 className="text-2xl font-semibold">{`${aspirante.nombre} ${aspirante.apellido}`}</h2>
               <p className="text-gray-600 text-xl">
-                {aspirante.profesion?.profesion || "Profesión Desconocida"}
+                {aspirante.profesiones_de_aspirante?.profesion || "Profesión Desconocida"}
               </p>
             </div>
             <div className="text-start text-xl mb-4">
@@ -112,7 +112,7 @@ function AspiranteDetail() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col justify-around text-start text-xl h-80 w-full p-5 border shadow-sm rounded-lg">
+        <div className="flex flex-col justify-around text-start text-xl  w-full p-5 border shadow-sm rounded-lg">
           {!isEditing ? (
             <>
               <p>
@@ -146,7 +146,7 @@ function AspiranteDetail() {
               </p>
             </>
           ) : (
-            <form onSubmit={handleFormSubmit} className="space-y-4">
+            <form onSubmit={handleFormSubmit} className="">
               <div>
                 <label className="block font-bold">Imagen:</label>
                 <input
