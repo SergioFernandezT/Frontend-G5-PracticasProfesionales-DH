@@ -17,15 +17,12 @@ const createAspirante = async (data) => {
     return response.data;
 };
 
-//const updateAspirante = async (id, data) => {
-//    const response = await axios.put(`${API_URL}/edit/${id}`, data);
-//    return response.data;
-//};
 const updateAspirante = async (id, data) => {
     try {
       const response = await axios.put(`${API_URL}/edit/${id}`, data, {
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': localStorage.token,
         },
       });
       return response.data;
