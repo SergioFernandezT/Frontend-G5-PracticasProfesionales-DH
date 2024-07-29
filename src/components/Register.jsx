@@ -55,7 +55,7 @@ function Register() {
     var base64String = 'Noimage'
     reader.onload = (e) => {
       base64String = reader.result.replace('data:', '').replace(/^.+,/, '');
-      setImagenUser('data:image/png;base64,' + base64String);
+      setImagenUser(`data:${files[0].type};base64,${base64String}`);
     }
   }
 
