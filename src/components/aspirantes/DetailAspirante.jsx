@@ -62,22 +62,24 @@ function AspiranteDetail() {
   };
 
   const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setImageFile(file);
+    const { files } = e.target;
+    const reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+    var base64String = 'Noimage'
+    reader.onload = (e) => {
+      base64String = reader.result.replace('data:', '').replace(/^.+,/, '');
+      setImageFile(`data:${files[0].type};base64,${base64String}`);
+    }
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const data = new FormData();
-    for (const key in formData) {
-      data.append(key, formData[key]);
-    }
-    delete data.profesiones_de_aspirante
+    delete formData.profesiones_de_aspirante
     if (imageFile) {
-      data.append("imagen", imageFile[0]);
+      formData.imagen = imageFile;
     }
 
-    updateAspirante(id, data)
+    updateAspirante(id, formData)
       .then((updatedData) => {
         setAspirante(updatedData);
         setIsEditing(false); // Exit edit mode after successful update
